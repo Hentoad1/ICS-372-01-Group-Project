@@ -1,0 +1,29 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.button {
+    -fx-cursor: hand;
+}
+
+.button-primary {
+    -fx-background-color: #6B3E2E;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+}
+
+.button-primary:hover {
+    -fx-background-color: #8B5E3C;
+}
+
+.table-view .column-header {
+    -fx-background-color: #6B3E2E;
+    -fx-text-fill: white;
+}
+
+.list-cell {
+    -fx-padding: 10;
+}
