@@ -41,7 +41,20 @@ Manager --> MM
 
 ## Wireframes
 
+### Customer Ordering Screen
+![Customer Ordering Screen](wireframes/Customer_Ordering_Screen.png "Customer Ordering Screen")
 
+### Barista Fulfillment Screen
+![Barista Fulfillment Screen](wireframes/Barista_Fulfillment_Screen.png "Barista Fulfillment Screen")
+
+### Manager Inventory Management
+![Manager Inventory Management](wireframes/Manager_Inventory_Management.png "Manager Inventory Management")
+
+### Manager Menu Management
+![Manager Menu Management](wireframes/Manager_Menu_Management.png "Manager Menu Management")
+
+### Manager Sales Overview
+![Manager Sales Overview](wireframes/Manager_Sales_Overview.png "Manager Sales Overview")
 
 ## Conceptual Classes to Software Classes
 
