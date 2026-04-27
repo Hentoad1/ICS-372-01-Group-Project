@@ -164,21 +164,54 @@ Controller -->> UI: Update Screen
 UI -->> Customer: Display Updated View
 ```
 
-This reflects object-oriented principles and patterns by ...
+This reflects object-oriented principles and patterns by properly using a facade (Controller) to standardize inputs, and utilizes error checking to make sure stock and order exist.  
 
-### Sequence 2: ???
-
-```mermaid
-```
-
-This reflects object-oriented principles and patterns by ...
-
-### Sequence 3: ???
+### Sequence 2: Barista Fulfills Order
 
 ```mermaid
+sequenceDiagram
+
+actor Barista
+participant UI
+participant Controller
+participant OrderQueue
+participant Order
+
+Barista ->> UI: View orders
+UI ->> Controller: viewOrders()
+Controller ->> OrderQueue: viewOrders()
+OrderQueue -->> Controller: Return Orders
+Controller -->> UI: Update Screen
+Barista ->> UI: Fulfill Order
+UI ->> Controller: fulfillOrder()
+Controller ->> OrderQueue: fulfillOrder()
+OrderQueue ->> Order: fulfill()
+Order -->> Controller: Success
+Controller -->> UI: Success
 ```
 
-This reflects object-oriented principles and patterns by ...
+This reflects object-oriented principles and patterns by properly bubbling down events throughout the program and using middlemen such as OrderQueue to guarantee no false fulfillments happen.
+
+### Sequence 3: Manager adds Inventory
+
+```mermaid
+sequenceDiagram
+
+actor Manager
+participant UI
+participant Controller
+participant Inventory
+participant InventoryItem
+
+Manager ->> UI: Add Inventory
+UI ->> Controller: addInventoryItem()
+Controller ->> Inventory: addInventoryItem()
+Inventory ->> InventoryItem: constructor()
+Inventory -->> Controller: Success
+Controller -->> UI: Success
+```
+
+This reflects object-oriented principles and patterns by using the Controller in the MVC architecutre to properly split the frontend (user) with the backend (system). 
 
 ## Application Layers & MVC Implementation
 
@@ -262,11 +295,11 @@ Model <--> OrderQueue
 
 ### Principle 1: Observer Pattern (MANDATORY) 
 
-Principle 1 explanation here.
+Our program uses the observer pattern in the implemenmtion of the frontend to backend communcation. Because our menu and orders are in a constant state subject to change, the changes prone to happen need to be properly observed and managed to update state of each of these modules. This is much more effective than constantly polling all orders that exist or all items on the menu to check for potential updates.   
 
 ### Principle 2: Factory Pattern (MANDATORY)
 
-Principle 2 explanation here.
+Our program uses the factory pattern in the implemention of creating item on the menu. The factory pattern is used to manage the fact there are many different types of items on the menu, this is done by having different factories take in the item-specific parameters to then create an instance of the abstract class MenuItem.
 
 ### Principle 3: Strategy Pattern
 
@@ -278,4 +311,4 @@ The Model / BrewBiteSystem acts as a facade for checking inventory, processing o
 
 ### Single Responsibility Principle Explanation
 
-Single Responsibility Principle Adherence explanation here.
+This project adheres to the Single Responsibility Principle by using many different object oriented patterns that reduce coupling and simplifies the code. One example of this is the usage of the MVC structure. Our model view and controller modules all manage data releveant to them and change state only when necessary data from other modules is needed. Splitting these up allows for simpler testing, development, and readability. Our usage of the AuthenticationService Singleton allows for simplciity when it comes to logging in. Because all logins should be treated the same (Certain login credentials shouldn't work in certain places where others wont), this singleton allows for classes to have easy access to the AuthenticationService.  
